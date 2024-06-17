@@ -117,7 +117,7 @@ function generateWeatherHTML(data, localTime) {
 
   weatherHTML += `
       </div>
-      <div id="displayAllDataBtn" onclick="displayAllDays()">Show Full 14 Days</div>
+      <div id="displayAllDataBtn" onclick="displayAllDays()">Show All Days</div>
     </div>
   `;
   return weatherHTML;
