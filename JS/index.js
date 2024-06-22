@@ -15,7 +15,7 @@ search.value = "cairo";
 getWeather();
 
 async function getWeather() {
-  if (search.value.length >= 3) {
+  if (search.value.length > 2) {
     try {
       const response = await fetch(`${urlApi}&q=${search.value}&days=14`);
       const data = await response.json();
