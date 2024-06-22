@@ -18,10 +18,9 @@ async function getWeather() {
   try {
     const response = await fetch(`${urlApi}&q=${search.value}&days=14`);
     const data = await response.json();
-    console.log(data);
     displayWeather(data);
-  } catch (error) {
-    console.log("Invalid input", error);
+  } catch(err) {
+    console.log("Invalid input");
   }
 }
 
