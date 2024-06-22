@@ -15,12 +15,14 @@ search.value = "cairo";
 getWeather();
 
 async function getWeather() {
-  try {
-    const response = await fetch(`${urlApi}&q=${search.value}&days=14`);
-    const data = await response.json();
-    displayWeather(data);
-  } catch(err) {
-    console.log("Invalid input");
+  if (search.value.length >= 3) {
+    try {
+      const response = await fetch(`${urlApi}&q=${search.value}&days=14`);
+      const data = await response.json();
+      displayWeather(data);
+    } catch {
+      console.log("Invalid input");
+    }
   }
 }
 
@@ -57,14 +59,14 @@ function formatTime(localTime) {
 
 function generateWeatherHTML(data, localTime) {
   let weatherHTML = `
-    <div class="location m-auto my-3">
+    <div class="location m-auto my-3 col-md-8">
       <p class="name">Location: ${data.location.name}</p>
-      <p class="region">Region: ${data.location.region}</p>
       <p class="time">Time: ${localTime}</p>
+      <p class="region">Region: ${data.location.region}</p>
       <p class="country">Country: ${data.location.country}</p>
     </div>
-          <div class="location m-auto my-3">
-          <h3 class="my-3">Current Weather For ${data.location.name}</h3>
+          <div class="location m-auto my-3 col-md-8">
+          <h3 class="my-3 text-center">Current Weather For ${data.location.name}</h3>
           <p>${data.current.temp_c}&deg;C</p>
           <img src="${data.current.condition.icon}" alt="Weather icon" />
           <p class="text">${data.current.condition.text}</p>
@@ -116,7 +118,7 @@ function generateWeatherHTML(data, localTime) {
 
   weatherHTML += `
       </div>
-      <div id="displayAllDataBtn" onclick="displayAllDays()">Show All Days</div>
+      <div id="displayAllDataBtn" onclick="displayAllDays()">Show Full 14 Days</div>
     </div>
   `;
   return weatherHTML;
